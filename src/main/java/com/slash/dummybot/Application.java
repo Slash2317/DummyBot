@@ -1,4 +1,4 @@
-package com.slash.schoolroomsbot;
+package com.slash.dummybot;
 
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -19,13 +19,13 @@ public class Application {
         try {
             props.load(Application.class.getClassLoader().getResourceAsStream("config-" + env + ".properties"));
 
-            SchoolroomsBotListener schoolroomsBotListener = new SchoolroomsBotListener();
+            BotListener botListener = new BotListener();
 
             JDABuilder.createDefault(props.getProperty("token"))
                     .setActivity(Activity.playing("something dumb"))
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
                     .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                    .addEventListeners(schoolroomsBotListener)
+                    .addEventListeners(botListener)
                     .build();
         }
         catch (IOException e) {
